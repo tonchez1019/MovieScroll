@@ -6,7 +6,12 @@ import { Context as HomeContext } from '../context/HomeContext';
 
 
 const HomeScreen = () => {
-    const { state } = useContext(HomeContext);
+    const { state, getList } = useContext(HomeContext);
+
+
+    useEffect(() => {
+        getList()
+    }, []);
 
     console.log(state.data);
     return (

@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext'
+import httpClient from '../services/httpClient'
 
 const initialState = {
     error: false,
@@ -23,6 +24,22 @@ const clearState = (dispatch) => {
     }
 }
 
+const getList = (dispatch) => {
+    return async () => {
+        try {
+
+            const response = await httpClient.get(`&s=batman`, {
+               
+            });
+
+           console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+}
+
 
 
 
@@ -30,6 +47,7 @@ export const { Context, Provider } = createDataContext(
     LocationReducer,
     {
         clearState,
+        getList
 
 
     },
