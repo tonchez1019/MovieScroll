@@ -3,6 +3,7 @@ import createDataContext from './createDataContext'
 const initialState = {
     error: false,
     message: null,
+    data: []
 }
 
 const LocationReducer = (state = initialState, action) => {
