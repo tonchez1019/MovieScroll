@@ -28,11 +28,11 @@ const getList = (dispatch) => {
     return async () => {
         try {
 
-            const response = await httpClient.get(`movie/top_rated`, {
+            const response = await httpClient.get(`/movie/top_rated?language=es-MX`, {
                 'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGE1NmE4M2FjZGE0ZDU5ZDkyNDdkMzY5ZjY3MmNjZiIsInN1YiI6IjY0YmIzYmZmZWI3OWMyMDBmZjljNDBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fGEr3DwoR7JmuO8N17stMCYzvLJTraX9Ve2T1dfjrKQ`,
             });
 
-            console.log(response);
+            console.log(JSON.stringify(response, null, 2));
         } catch (error) {
             console.log(error);
         }
