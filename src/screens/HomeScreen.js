@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { StyleSheet, View, Text } from 'react-native';
-
+import { StyleSheet, View, Text} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
