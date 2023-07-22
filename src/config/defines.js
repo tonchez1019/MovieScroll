@@ -1,1 +1,1 @@
-export const apiUrlBase = 'http://www.omdbapi.com/?apikey=27608d18&'
+export const apiUrlBase = 'http://api.themoviedb.org/3/'
