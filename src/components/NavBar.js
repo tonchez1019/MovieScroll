@@ -3,14 +3,15 @@ import { TouchableOpacity, Image, Text } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
-const NavBar = () => {
+const NavBar = ({ opacity }) => {
     const navigation = useNavigation()
 
     return (
         <Header
             backgroundColor="#1E2747"
             barStyle="default"
-            containerStyle={{ height: 110 }}
+            style={opacity}
+            containerStyle={[{ height: 110 }]}
             leftContainerStyle={{ justifyContent: 'center' }}
             rightContainerStyle={{ justifyContent: 'center' }}
             leftComponent={
@@ -18,7 +19,7 @@ const NavBar = () => {
                     onPress={() => navigation.navigate('LenguageScreen')}
                     style={{ position: 'absolute' }}>
                     <Icon
-                        name='bars'
+                        name='home'
                         size={25}
                         type='font-awesome'
                         color='white' />

@@ -22,6 +22,11 @@ const HomeScreen = () => {
         [{ nativeEvent: { contentOffset: { y: titleScrollY } } }],
         { useNativeDriver: false }
     );
+    const titleOpacity = titleScrollY.interpolate({
+        inputRange: [0, 100], // Adjust the range as per your requirement
+        outputRange: [1, 0], // Opacity will decrease as the user scrolls down
+        extrapolate: 'clamp',
+    });
 
     useEffect(() => {
         getMovieList(state.lenguage)
@@ -32,7 +37,14 @@ const HomeScreen = () => {
             <View style={HomeStyles.container}>
                 <NavBar />
                 <View style={HomeStyles.containerItem}>
-                    <Animated.Text style={[HomeStyles.title, { transform: [{ translateY: titleScrollY }] }]}>MovieScroll</Animated.Text>
+                    <Animated.Text
+                        style={[
+                            HomeStyles.title,
+                            { transform: [{ translateY: titleScrollY }], opacity: titleOpacity },
+                        ]}
+                    >
+                        MovieScroll
+                    </Animated.Text>
                     <View style={HomeStyles.containerItemMovies}>
                         <ButtonCat />
                         {
@@ -50,11 +62,11 @@ const HomeScreen = () => {
                                             onPress={() => navigation.navigate('MovieItemScreen', item)}
                                             style={HomeStyles.imageContainer}
                                         >
-                                            <Image
+                                            <FastImage
                                                 style={HomeStyles.image}
                                                 source={{
                                                     uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
-                                                    // priority: FastImage.priority.normal,
+                                                    priority: FastImage.priority.normal,
                                                 }}
                                             />
                                         </TouchableOpacity>
