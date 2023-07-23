@@ -7,29 +7,27 @@ import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
     const { state, getList } = useContext(HomeContext);
-    const [offset, setOffset] = useState(0);
     const navigation = useNavigation();
     useEffect(() => {
-        getList()
+        getList(state.lenguage)
     }, []);
-    
+
     return (
         <View style={HomeStyles.container}>
             <View style={HomeStyles.containerItem}>
                 <Text style={HomeStyles.title}>MovieScroll</Text>
                 <View style={HomeStyles.containerItemMovies}>
-
                     {
                         state.listMovie != null
                             ?
                             <FlatList
                                 data={state.listMovie}
                                 numColumns={3}
-                                columnWrapperStyle={{ flexWrap: 'wrap', flex: 1, marginTop: 5 }} numColumns={3}
+                                columnWrapperStyle={{ flexWrap: 'wrap', flex: 1, marginTop: 5 }}
                                 keyExtractor={(item) => item.id.toString()}
                                 renderItem={({ item }) =>
                                     <TouchableOpacity
-                                        onPress={() => navigation.navigate('MovieItemScreen',item)}
+                                        onPress={() => navigation.navigate('MovieItemScreen', item)}
                                         style={HomeStyles.imageContainer}
                                     >
                                         <Image
