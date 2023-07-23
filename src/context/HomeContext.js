@@ -78,7 +78,7 @@ const getMovieList = (dispatch) => {
 const getTopReateMovieList = (dispatch) => {
     return async (item) => {
         try {
-            dispatch({ type: 'FETCHING_DATA', payload: { fetchingData: true } });
+            dispatch({ type: 'FETCHING_DATA', payload: { fetchingData: false } });
             const response = await httpClient.get(`/movie/${item.type}?language=${item.language}`, {
                 'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGE1NmE4M2FjZGE0ZDU5ZDkyNDdkMzY5ZjY3MmNjZiIsInN1YiI6IjY0YmIzYmZmZWI3OWMyMDBmZjljNDBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fGEr3DwoR7JmuO8N17stMCYzvLJTraX9Ve2T1dfjrKQ`,
             });
