@@ -18,7 +18,6 @@ const HomeScreen = () => {
             <View style={HomeStyles.containerItem}>
                 <Text style={HomeStyles.title}>MovieScroll</Text>
                 <View style={HomeStyles.containerItemMovies}>
-
                     <ButtonCat />
                     {
                         state.listMovie != null
@@ -39,7 +38,6 @@ const HomeScreen = () => {
                                         />
                                     </TouchableOpacity>
                                 }
-
                             />
                             : null
                     }
