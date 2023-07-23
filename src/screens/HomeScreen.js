@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { StyleSheet, View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import {
+    StyleSheet, View, Text, FlatList,
+    Image, Animated,
+    ActivityIndicator, TouchableOpacity
+} from 'react-native';
 import { HomeStyles } from '../css/HomeSytles';
 import { Context as HomeContext } from '../context/HomeContext';
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +13,15 @@ import FastImage from 'react-native-fast-image'
 const HomeScreen = () => {
     const { state, getMovieList } = useContext(HomeContext);
     const navigation = useNavigation();
+
+
+    const titleScrollY = new Animated.Value(0);
+
+    const handleTitleScroll = Animated.event(
+        [{ nativeEvent: { contentOffset: { y: titleScrollY } } }],
+        { useNativeDriver: false }
+    );
+
     useEffect(() => {
         getMovieList(state.lenguage)
     }, []);
@@ -17,7 +30,7 @@ const HomeScreen = () => {
         return (
             <View style={HomeStyles.container}>
                 <View style={HomeStyles.containerItem}>
-                    <Text style={HomeStyles.title}>MovieScroll</Text>
+                    <Animated.Text style={[HomeStyles.title, { transform: [{ translateY: titleScrollY }] }]}>MovieScroll</Animated.Text>
                     <View style={HomeStyles.containerItemMovies}>
                         <ButtonCat />
                         {
@@ -27,17 +40,19 @@ const HomeScreen = () => {
                                     data={state.listMovie}
                                     numColumns={3}
                                     columnWrapperStyle={{ flexWrap: 'wrap', flex: 1, marginTop: 5 }}
+                                    onScroll={handleTitleScroll}
+                                    scrollEventThrottle={16}
                                     keyExtractor={(item) => item.id.toString()}
                                     renderItem={({ item }) =>
                                         <TouchableOpacity
                                             onPress={() => navigation.navigate('MovieItemScreen', item)}
                                             style={HomeStyles.imageContainer}
                                         >
-                                            <FastImage
+                                            <Image
                                                 style={HomeStyles.image}
                                                 source={{
                                                     uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
-                                                    priority: FastImage.priority.normal,
+                                                    // priority: FastImage.priority.normal,
                                                 }}
                                             />
                                         </TouchableOpacity>

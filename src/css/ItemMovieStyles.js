@@ -11,8 +11,10 @@ export const ItemMovieStyles = StyleSheet.create({
         color: '#8DA0BC',
     },
     image: {
+        alignSelf: 'center',
         height: 250,
-        width: '50%'
+        width: '50%',
+        marginVertical: 20
     }
 
 })
