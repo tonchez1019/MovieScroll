@@ -7,6 +7,7 @@ import {
 import { HomeStyles } from '../css/HomeSytles';
 import { Context as HomeContext } from '../context/HomeContext';
 import { useNavigation } from '@react-navigation/native';
+import NavBar from '../components/NavBar';
 import ButtonCat from '../components/ButtonCat';
 import FastImage from 'react-native-fast-image'
 
@@ -29,6 +30,7 @@ const HomeScreen = () => {
     const renderContent = () => {
         return (
             <View style={HomeStyles.container}>
+                <NavBar />
                 <View style={HomeStyles.containerItem}>
                     <Animated.Text style={[HomeStyles.title, { transform: [{ translateY: titleScrollY }] }]}>MovieScroll</Animated.Text>
                     <View style={HomeStyles.containerItemMovies}>
