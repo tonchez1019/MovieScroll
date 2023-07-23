@@ -3,7 +3,31 @@ import { StyleSheet } from 'react-native';
 export const HomeStyles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center"
+        backgroundColor: '#1E2747',
+        padding: 10
     },
-   
+    containerItem: {
+        flex: 1,
+        padding: 20,
+    },
+    containerItemMovies: {
+        flex: 1,
+        
+    },
+    title: {
+        fontSize: 35,
+        color: '#8DA0BC',
+        textAlign: 'center'
+    },
+    imageContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        margin: 1
+    },
+    image: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 120,
+
+    },
 })
