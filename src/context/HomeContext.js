@@ -36,14 +36,33 @@ const clearState = (dispatch) => {
     }
 }
 
-const getList = (dispatch) => {
+const getMovieList = (dispatch) => {
     return async (lengu) => {
         try {
 
-            const response = await httpClient.get(`/movie/top_rated?language=${lengu}`, {
+            const response = await httpClient.get(`/movie/popular?language=${lengu}`, {
                 'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGE1NmE4M2FjZGE0ZDU5ZDkyNDdkMzY5ZjY3MmNjZiIsInN1YiI6IjY0YmIzYmZmZWI3OWMyMDBmZjljNDBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fGEr3DwoR7JmuO8N17stMCYzvLJTraX9Ve2T1dfjrKQ`,
             });
+            console.log('results' in response);
+            if ('results' in response) {
+                dispatch({
+                    type: 'GET_LIST_MOVIE',
+                    payload: { response: response.results }
+                });
+            }
+            //console.log(JSON.stringify(response.results, null, 2));
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
+}
+const getTopReateMovieList = (dispatch) => {
+    return async (item) => {
+        try {
+            const response = await httpClient.get(`/movie/${item.type}?language=${item.language}`, {
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOGE1NmE4M2FjZGE0ZDU5ZDkyNDdkMzY5ZjY3MmNjZiIsInN1YiI6IjY0YmIzYmZmZWI3OWMyMDBmZjljNDBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fGEr3DwoR7JmuO8N17stMCYzvLJTraX9Ve2T1dfjrKQ`,
+            });
             if (!response.ok) {
                 dispatch({
                     type: 'GET_LIST_MOVIE',
@@ -73,7 +92,8 @@ export const { Context, Provider } = createDataContext(
     LocationReducer,
     {
         clearState,
-        getList,
+        getMovieList,
+        getTopReateMovieList,
         setLenguage
 
 

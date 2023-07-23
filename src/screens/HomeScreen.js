@@ -3,13 +3,14 @@ import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity } from 'react
 import { HomeStyles } from '../css/HomeSytles';
 import { Context as HomeContext } from '../context/HomeContext';
 import { useNavigation } from '@react-navigation/native';
+import ButtonCat from '../components/ButtonCat';
 
 
 const HomeScreen = () => {
-    const { state, getList } = useContext(HomeContext);
+    const { state, getMovieList } = useContext(HomeContext);
     const navigation = useNavigation();
     useEffect(() => {
-        getList(state.lenguage)
+        getMovieList(state.lenguage)
     }, []);
 
     return (
@@ -17,6 +18,8 @@ const HomeScreen = () => {
             <View style={HomeStyles.containerItem}>
                 <Text style={HomeStyles.title}>MovieScroll</Text>
                 <View style={HomeStyles.containerItemMovies}>
+
+                    <ButtonCat />
                     {
                         state.listMovie != null
                             ?
